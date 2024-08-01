@@ -1,25 +1,24 @@
+<script setup>
+defineProps({
+  event: {
+    type: Object,
+    required: true,
+  },
+});
+</script>
+
 <template>
   <router-link
     class="event-link"
     :to="{ name: 'EventDetails', params: { id: event.id } }"
   >
     <div class="event-card">
-      <span>@{{ event.time }} on {{ event.date }}</span>
-      <h4>{{ event.title }}</h4>
+      <img :src="event.organizer" :alt="event.title" class="event-image" />
+      <h2>{{ event.title }}</h2>
+      <span>Duration: {{ event.time }} Released: {{ event.date }}</span>
     </div>
   </router-link>
 </template>
-
-<script>
-export default {
-  props: {
-    event: {
-      type: Object,
-      required: true
-    }
-  }
-}
-</script>
 
 <style scoped>
 .event-card {
@@ -38,5 +37,13 @@ export default {
 .event-link {
   color: #2c3e50;
   text-decoration: none;
+}
+
+.event-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
 </style>
